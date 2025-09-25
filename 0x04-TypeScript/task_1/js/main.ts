@@ -1,27 +1,30 @@
 // Define the Teacher interface
-// Define the Teacher interface
 interface Teacher {
-  readonly firstName: string;  // Only modifiable when initialized
-  readonly lastName: string;   // Only modifiable when initialized
-  fullTimeEmployee: boolean;   // Always defined
-  yearsOfExperience?: number;  // Optional
-  location: string;            // Always defined
-  [propName: string]: any;     // Allow any additional attributes
+  readonly firstName: string;
+  readonly lastName: string;
+  fullTimeEmployee: boolean;
+  yearsOfExperience?: number;
+  location: string;
+  [propName: string]: any;
 }
 
 // Define the Directors interface that extends Teacher
 interface Directors extends Teacher {
-  numberOfReports: number;     // Required attribute for directors
+  numberOfReports: number;
 }
 
+// Define interface for printTeacher function
 interface printTeacherFunction {
-     (firstName: string, lastName: string): string;
-   }
-   const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
-     return `${firstName.charAt(0)}. ${lastName}`;
-   };
-      console.log(printTeacher("John", "Doe")); 
+  (firstName: string, lastName: string): string;
+}
 
+// Implement the printTeacher function
+function printTeacher(firstName: string, lastName: string): string {
+  return `${firstName.charAt(0)}. ${lastName}`;
+}
+
+// Verify the function matches the interface
+const printTeacherFunc: printTeacherFunction = printTeacher;
 
 // Create teacher instances
 const teacher3: Teacher = {
@@ -44,6 +47,11 @@ const director1: Directors = {
 };
 
 console.log(director1);
+
+// Test the printTeacher function
+console.log(printTeacher("John", "Doe")); // Should output: J. Doe
+console.log(printTeacher("Jane", "Smith")); // Should output: J. Smith
+console.log(printTeacher("Bob", "Johnson")); // Should output: B. Johnson
 
 // Additional examples
 const teacher1: Teacher = {
